@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.Optional;
+
 @SpringBootApplication
 public class SpringDataJpaExApplication {
 
@@ -15,7 +17,7 @@ public class SpringDataJpaExApplication {
 
 		StudentRepo repo = context.getBean(StudentRepo.class);
 
-		Student s1 = context.getBean(Student.class);
+/*		Student s1 = context.getBean(Student.class);
 		Student s2 = context.getBean(Student.class);
 		Student s3 = context.getBean(Student.class);
 		Student s4 = context.getBean(Student.class);
@@ -37,6 +39,21 @@ public class SpringDataJpaExApplication {
 		s4.setRollNo(4);
 		s4.setName("Kasi Vishwa");
 		s4.setMarks(90);
+
+		repo.save(s1);
+		repo.save(s2);
+		repo.save(s3);
+		repo.save(s4);*/
+
+
+		//To find all data
+		System.out.println(repo.findAll());
+
+
+		//when the data is not found, it will throw a exception, so we are storing the data
+		//And if the value is not present create a dummy object
+		Optional<Student> s = repo.findById(1);
+		System.out.println(s.orElse(new Student()));
 
 	}
 
